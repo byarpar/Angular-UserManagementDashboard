@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary-color: #FFB6C1; /* Light Pink */
+  --secondary-color: #87CEFA; /* Light Sky Blue */
+  --background-color: #F0F8FF; /* Alice Blue */
+  --text-color: #4A4A4A;
+  --border-radius: 20px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: var(--primary-color);
+}
+
+nav {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover, nav a.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.user-list, .add-user-form {
+  flex: 1;
+  min-width: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  background-color: #F8F8F8;
+}
+
+th {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  font-size: clamp(14px, 1.5vw, 16px);
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #FF69B4; /* Hot Pink */
+}
+
+.error {
+  color: #FF6B6B;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  --background-color: #2C3E50;
+  --text-color: #ECF0F1;
+}
+
+body.dark-mode header,
+body.dark-mode .user-list,
+body.dark-mode .add-user-form {
+  background-color: #34495E;
+}
+
+body.dark-mode table th {
+  background-color: #2980B9;
+}
+
+body.dark-mode table td {
+  background-color: #445566;
+}
+
+body.dark-mode input {
+  background-color: #2C3E50;
+  color: #ECF0F1;
+  border-color: #3498DB;
+}
+
+body.dark-mode button {
+  background-color: #E74C3C;
+}
+
+body.dark-mode button:hover {
+  background-color: #C0392B;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  nav a {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .user-list, .add-user-form {
+    min-width: 100%;
+    padding: 15px;
+  }
+
+  h1, h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Tablet devices */
+@media (max-width: 1024px) {
+  nav {
+    gap: 15px;
+  }
+
+  .user-list, .add-user-form {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+/* Cute loading animation */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.loading::after {
+  content: "Loading...";
+  font-size: 24px;
+  color: var(--primary-color);
+  animation: bounce 1s infinite;
+}

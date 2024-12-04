@@ -1,0 +1,21 @@
+<div class="user-list">
+    <h2>User List</h2>
+    <div *ngIf="loading" class="loading">Loading users...</div>
+    <table *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
