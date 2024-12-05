@@ -30,10 +30,7 @@ import { UserService } from '../user.service';
 
       <div class="form-group">
         <label for="role">🎭 Role:</label>
-        <input type="text" id="role" formControlName="role" required>
-        <div *ngIf="submitted && userForm.get('role')?.errors" class="error">
-          Role is required
-        </div>
+        <input type="text" id="role" formControlName="role">
       </div>
 
       <button type="submit">✨ Add User</button>
@@ -49,7 +46,7 @@ export class AddUserFormComponent {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      role: ['', Validators.required]
+      role: ['']
     });
   }
 

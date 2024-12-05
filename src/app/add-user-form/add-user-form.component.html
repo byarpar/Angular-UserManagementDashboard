@@ -1,32 +1,31 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="add-user-form">
-    <h2>Add New User</h2>
-    
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" formControlName="name" required>
-      <div *ngIf="submitted && userForm.get('name')?.errors" class="error">
-        Name is required
-      </div>
+  <h2>Add New User</h2>
+  
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" required>
+    <div *ngIf="submitted && userForm.get('name')?.errors" class="error">
+      Name is required
     </div>
-  
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" formControlName="email" required>
-      <div *ngIf="submitted && userForm.get('email')?.errors" class="error">
-        <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required</div>
-        <div *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format</div>
-      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" required>
+    <div *ngIf="submitted && userForm.get('email')?.errors" class="error">
+      <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required</div>
+      <div *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format</div>
     </div>
-  
-    <div class="form-group">
-      <label for="role">Role:</label>
-      <input type="text" id="role" formControlName="role" required>
-      <div *ngIf="submitted && userForm.get('role')?.errors" class="error">
-        Role is required
-      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="role">Role:</label>
+    <input type="text" id="role" formControlName="role" required>
+    <div *ngIf="submitted && userForm.get('role')?.errors" class="error">
+      Role is required
     </div>
-  
-    <button type="submit">Add User</button>
-  </form>
-  
-  
+  </div>
+
+  <button type="submit">Add User</button>
+</form>
+

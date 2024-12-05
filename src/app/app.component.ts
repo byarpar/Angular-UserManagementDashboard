@@ -9,7 +9,7 @@ import { DarkModeToggleComponent } from './dark-mode-toggle/dark-mode-toggle.com
   template: `
     <div class="container">
       <header>
-        <h1>User Dashboard</h1>
+        <h1> User Dashboard</h1>
         <app-dark-mode-toggle></app-dark-mode-toggle>
       </header>
       <nav>

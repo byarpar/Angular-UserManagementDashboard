@@ -15,17 +15,16 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
-  font-size: clamp(14px, 2vw, 16px);
-  line-height: 1.6;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px;
-  overflow-x: hidden;
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -37,7 +36,7 @@ header {
   padding: 20px;
   border-radius: var(--border-radius);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
+  overflow: hidden;
 }
 
 h1, h2 {
@@ -49,7 +48,7 @@ nav {
   display: flex;
   justify-content: center;
   gap: 20px;
-  
+  flex-wrap: wrap;
 }
 
 nav a {
@@ -59,7 +58,6 @@ nav a {
   padding: 10px 20px;
   border-radius: var(--border-radius);
   transition: background-color 0.3s, color 0.3s;
-  
 }
 
 nav a:hover, nav a.active {
@@ -71,7 +69,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  
+  flex: 1;
 }
 
 .user-list, .add-user-form {
@@ -81,39 +79,55 @@ main {
   padding: 20px;
   border-radius: var(--border-radius);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-table {
+.user-list table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 10px;
-  
 }
 
-th, td {
+.user-list th,
+.user-list td {
   padding: 15px;
   text-align: left;
   background-color: #F8F8F8;
 }
 
-th {
+.user-list th {
   background-color: var(--secondary-color);
   color: white;
+  font-weight: 600;
 }
 
-tr:first-child th:first-child {
+.user-list tr {
+  margin-bottom: 10px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.user-list tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-list tr:first-child th:first-child {
   border-top-left-radius: var(--border-radius);
 }
 
-tr:first-child th:last-child {
+.user-list tr:first-child th:last-child {
   border-top-right-radius: var(--border-radius);
 }
 
-tr:last-child td:first-child {
+.user-list tr:last-child td:first-child {
   border-bottom-left-radius: var(--border-radius);
 }
 
-tr:last-child td:last-child {
+.user-list tr:last-child td:last-child {
   border-bottom-right-radius: var(--border-radius);
 }
 
@@ -134,7 +148,7 @@ input {
   box-sizing: border-box;
   border: 2px solid var(--secondary-color);
   border-radius: var(--border-radius);
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: 16px;
   transition: border-color 0.3s;
 }
 
@@ -151,7 +165,7 @@ button {
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -250,45 +264,106 @@ body.dark-mode button:hover {
   background-color: #C0392B;
 }
 
-/* Mobile-first responsive design */
-@media (max-width: 480px) {
+/* Responsive design */
+@media (max-width: 768px) {
   header {
     flex-direction: column;
-    padding: 15px;
+    align-items: center;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+  }
+
+  .dark-mode-toggle {
+    margin-top: 15px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
   }
 
   nav a {
-    padding: 8px 15px;
-    font-size: 14px;
+    width: 100%;
+    text-align: center;
   }
 
   main {
     flex-direction: column;
   }
 
-  .container {
-    padding: 15px;
-  }
-
   .user-list, .add-user-form {
-    min-width: 100%;
-    padding: 15px;
-  }
-
-  h1, h2 {
-    font-size: 1.5em;
+    width: 100%;
   }
 }
 
-/* Tablet devices */
-@media (max-width: 1024px) {
-  nav {
-    gap: 15px;
+/* Responsive table styles */
+@media screen and (max-width: 600px) {
+  .user-list table, 
+  .user-list thead, 
+  .user-list tbody, 
+  .user-list th, 
+  .user-list td, 
+  .user-list tr {
+    display: block;
   }
 
-  .user-list, .add-user-form {
-    flex: 1;
-    max-width: 100%;
+  .user-list thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .user-list tr {
+    margin-bottom: 15px;
+    background-color: #F8F8F8;
+  }
+
+  .user-list td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    background-color: transparent;
+  }
+
+  .user-list td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  .user-list tr:first-child td:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+  }
+
+  .user-list tr:last-child td:last-child {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .user-list td {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .user-list td:before {
+    position: static;
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
   }
 }
 
@@ -311,3 +386,18 @@ body.dark-mode button:hover {
   color: var(--primary-color);
   animation: bounce 1s infinite;
 }
+
+/* Add some cute animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.user-list tr:nth-child(even) {
+  animation-delay: 0.1s;
+}
+
+.user-list tr:nth-child(odd) {
+  animation-delay: 0.2s;
+}
+

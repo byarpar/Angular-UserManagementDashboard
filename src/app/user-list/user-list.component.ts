@@ -15,20 +15,24 @@ import { UserService, User } from '../user.service';
           <tr>
             <th>Name</th>
             <th>Email</th>
-          
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
-            <td>🧑‍🦰 {{ user.name }}</td>
-            <td>📧 {{ user.email }}</td>
-           
+            <td data-label="Name">🧑‍🦰 {{ user.name }}</td>
+            <td data-label="Email">📧 {{ user.email }}</td>
+            <td data-label="Role">🎭 {{ user.role || 'N/A' }}</td>
           </tr>
         </tbody>
       </table>
     </div>
   `,
-  styleUrls: ['./user-list.component.css']
+  styles: [`
+    .user-list {
+      overflow-x: auto;
+    }
+  `]
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
